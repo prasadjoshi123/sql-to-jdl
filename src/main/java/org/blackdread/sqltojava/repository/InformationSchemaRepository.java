@@ -47,8 +47,8 @@ public class InformationSchemaRepository {
         return create.select(
             KEY_COLUMN_USAGE.TABLE_NAME,
             KEY_COLUMN_USAGE.COLUMN_NAME,
-            KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME,
-            KEY_COLUMN_USAGE.REFERENCED_COLUMN_NAME)
+            KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME.cast(SQLDataType.VARCHAR(64)),
+            KEY_COLUMN_USAGE.REFERENCED_COLUMN_NAME.cast(SQLDataType.VARCHAR(64)))
             .from(InformationSchema.INFORMATION_SCHEMA.KEY_COLUMN_USAGE)
             .where(KEY_COLUMN_USAGE.REFERENCED_TABLE_SCHEMA.eq(dbName)
                 .and(KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME.isNotNull()))
